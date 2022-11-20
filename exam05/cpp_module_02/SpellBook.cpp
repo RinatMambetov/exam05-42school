@@ -4,13 +4,11 @@ SpellBook::SpellBook() {}
 
 SpellBook::~SpellBook()
 {
-	std::map<std::string const &, ASpell *>::iterator bit = m.begin();
-	std::map<std::string const &, ASpell *>::iterator eit = m.end();
-
-	while (bit != eit)
+	std::map<std::string const &, ASpell *>::iterator it = m.begin();
+	while (it != m.end())
 	{
-		delete bit->second;
-		++bit;
+		delete it->second;
+		++it;
 	}
 	m.clear();
 }
@@ -23,16 +21,14 @@ void SpellBook::learnSpell(ASpell *s)
 
 void SpellBook::forgetSpell(std::string const &n)
 {
-	std::map<std::string const &, ASpell *>::iterator it = m.find(n);
-	if (it != m.end())
-		delete it->second;
+	if (m.find(n) != m.end())
+		delete m.find(n)->second;
 	m.erase(n);
 }
 
 ASpell *SpellBook::createSpell(std::string const &n)
 {
-	ASpell *s = m[n];
-	if (s)
-		return s->clone();
+	if (m.find(n) != m.end())
+		return m.find(n)->second->clone();
 	return 0;
 }

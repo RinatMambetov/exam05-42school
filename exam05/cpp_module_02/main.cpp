@@ -1,8 +1,8 @@
 #include "Warlock.hpp"
 #include "Dummy.hpp"
 #include "Fwoosh.hpp"
-#include "BrickWall.hpp"
 #include "Fireball.hpp"
+#include "BrickWall.hpp"
 #include "Polymorph.hpp"
 #include "TargetGenerator.hpp"
 
@@ -23,14 +23,17 @@ int main()
 	richard.learnSpell(fireball);
 
 	ATarget *wall = tarGen.createTarget("Inconspicuous Red-brick Wall");
+	ATarget *wall2 = tarGen.createTarget("Inconspicuous Red-brick Wal");
 
 	richard.introduce();
 	richard.launchSpell("Polymorph", *wall);
 	richard.launchSpell("Fireball", *wall);
+	richard.launchSpell("Firebal", *wall);
 
 	delete polymorph;
 	delete fireball;
 	delete wall;
+	delete wall2;
 
 	return 0;
 }

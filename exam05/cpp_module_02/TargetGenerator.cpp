@@ -28,7 +28,7 @@ void TargetGenerator::forgetTargetType(std::string const &n)
 
 ATarget *TargetGenerator::createTarget(std::string const &n)
 {
-	if (m[n])
-		return m[n]->clone();
+	if (m.find(n) != m.end())
+		return m.find(n)->second->clone();
 	return 0;
 }
